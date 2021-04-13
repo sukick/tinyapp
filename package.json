@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/sukick/tinyapp/issues"
   },
-  "homepage": "https://github.com/sukick/tinyapp#readme"
+  "homepage": "https://github.com/sukick/tinyapp#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
