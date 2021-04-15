@@ -82,7 +82,8 @@ app.post("/urls/:shortURL/delete", (req, res) => {
 });
 
 app.post("/login", (req, res) => {
-  res.cookie("username", username);
+  const usernameFilled = req.body.username;
+  res.cookie("username", usernameFilled);
   res.redirect('/urls');
 });
 
@@ -92,5 +93,5 @@ app.post("logout", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Example app listening on port ${PORT}!`);
+  console.log(`Example app listening on port: ${PORT}!`);
 });
