@@ -50,7 +50,7 @@ app.get('/register', (req, res) => {
   res.render('register', templateVars);
 });
 
-// login page
+//login 
 app.get('/login', (req, res) => {
   const templateVars = {
     user: null,
@@ -115,6 +115,8 @@ app.get("*", (req, res) => {
 });
 
 // POST ////////////////////////////////////////////////////////
+
+// Login
 app.post("/login", (req, res) => {
   const emailSubmitted = req.body.email;
   const passwordSubmitted = req.body.password;
