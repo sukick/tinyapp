@@ -27,13 +27,13 @@ const users = {
   }
 };
 
-
 //MIDDLEWARE////////////////////////////////////////////////////////
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieSession({
   name: 'session',
   keys: ['key1', 'key2'],
 }));
+
 // GET//////////////////////////////////////////////////////////////
 
 app.get("/", (req, res) => {
@@ -46,11 +46,6 @@ app.get("/", (req, res) => {
   return;
 });
 
-
-app.get("/hello", (req, res) => {
-  res.send("<html><body>Hello <b>World</b></body></html>\n");
-});
-
 app.get('/register', (req, res) => {
   const templateVars = {
     user: null,
@@ -58,14 +53,12 @@ app.get('/register', (req, res) => {
   res.render('register', templateVars);
 });
 
-
 app.get('/login', (req, res) => {
   const templateVars = {
     user: null,
   };
   res.render('login', templateVars);
 });
-
 
 app.get("/urls/new", (req, res) => {
   const user = users[req.session.user_id];
@@ -78,11 +71,9 @@ app.get("/urls/new", (req, res) => {
   return res.render("urls_new", templateVars);
 });
 
-
 app.get("/urls.json", (req, res) => {
   res.json(urlDatabase);
 });
-
 
 app.get("/urls", (req, res) => {
   const user = users[req.session.user_id];
@@ -93,7 +84,6 @@ app.get("/urls", (req, res) => {
   const templateVars = { urls, user };
   return res.render("urls_index", templateVars);
 });
-
 
 app.get("/urls/:shortURL", (req, res) => {
   const shortURL = req.params.shortURL;
@@ -110,8 +100,8 @@ app.get("/urls/:shortURL", (req, res) => {
   } else {
     return res.send('No access to this page.');
   }
-
 });
+
 app.get("/u/:shortURL", (req, res) => {
 
   const shortURL = req.params.shortURL;
@@ -121,7 +111,6 @@ app.get("/u/:shortURL", (req, res) => {
   }
   return res.redirect(longURL);
 });
-
 
 app.get("*", (req, res) => {
   res.redirect('/login');
@@ -190,12 +179,10 @@ app.post("/urls", (req, res) => {
   res.redirect(`/urls/${shortURL}`);
 });
 
-
 app.post("/logout", (req, res) => {
   req.session.user_id = null;
   res.redirect('/urls');
 });
-
 
 app.post('/urls/:shortURL/delete', (req, res) => {
   const id = req.session['user_id'];
@@ -209,7 +196,6 @@ app.post('/urls/:shortURL/delete', (req, res) => {
     res.send('PLease login to access this page.');
   }
 });
-
 
 app.post('/urls/:shortURL', (req, res) => {
   const id = req.session['user_id'];
@@ -231,6 +217,7 @@ app.post('/urls/:shortURL', (req, res) => {
     res.send('Please log in to access this page');
   }
 });
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}!`);
 });
