@@ -16,7 +16,6 @@ app.use(cookieSession({
 }));
 
 // GET//////////////////////////////////////////////////////////////
-
 app.get("/", (req, res) => {
   const user = users[req.session.user_id];
   if (!user) {
@@ -94,7 +93,6 @@ app.get("*", (req, res) => {
 });
 
 // POST ////////////////////////////////////////////////////////
-
 app.post("/login", (req, res) => {
   const emailSubmitted = req.body.email;
   const passwordSubmitted = req.body.password;
