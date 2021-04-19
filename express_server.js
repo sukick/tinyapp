@@ -6,29 +6,10 @@ const { generateRandomString, checkEmailExists, urlsForUser } = require('./helpe
 const app = express();
 const PORT = 8080;
 app.set("view engine", "ejs");
-//Databases/////////////////////////////////////////////////////////
-
-const urlDatabase = {
-  vzrUfn: {
-    longURL: "http://www.youtube.com",
-    userID: "oFXoHP"
-  },
-  ASBOrf: {
-    longURL: "http://www.cbc.ca",
-    userID: "oFXoHP"
-  }
-};
-
-const users = {
-  "OFXoHP": {
-    id: "OFXoHP",
-    email: "coding@a.com",
-    password: "$2b$10$PDGFyPBjk3t4DEAcjSIAtum638A0lG4bM1UDuWIKkbt/v9.obHO22"
-  }
-};
 
 //MIDDLEWARE////////////////////////////////////////////////////////
 app.use(bodyParser.urlencoded({extended: true}));
+
 app.use(cookieSession({
   name: 'session',
   keys: ['key1', 'key2'],
@@ -69,10 +50,6 @@ app.get("/urls/new", (req, res) => {
     user,
   };
   return res.render("urls_new", templateVars);
-});
-
-app.get("/urls.json", (req, res) => {
-  res.json(urlDatabase);
 });
 
 app.get("/urls", (req, res) => {
